@@ -1,0 +1,26 @@
+apiVersion: v2
+name: misp
+description: "Unofficial Helm chart for coolacid's Dockerization of MISP, \"The Open Source Threat Intelligence Sharing Platform\""
+type: application
+version: 0.1.0
+# There is a different chart for misp-modules, but coolacid puts both
+# MISP core and MISP modules in the same hub.docker.com repo. If you
+# override the tag, be sure to include "core-" in your override.
+appVersion: "core-v2.4.140a"
+# This is for the networking.k8s.io/v1 API used by the Ingress.
+kubeVersion: '>=1.19.0'
+sources:
+  - https://github.com/coolacid/docker-misp
+maintainers:
+  - name: "Jared Jennings"
+    email: "jjennings@fastmail.fm"
+icon: https://www.misp-project.org/assets/images/misp-small.png
+dependencies:
+  - name: mariadb
+    version: 9.3.5
+    repository: "https://charts.bitnami.com/bitnami"
+  - name: redis
+    version: 12.8.3
+    repository: "https://charts.bitnami.com/bitnami"
+  - name: misp-modules
+    version: 0.1.0
